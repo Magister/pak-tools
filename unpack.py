@@ -15,7 +15,7 @@ def main(*args):
     if len(args) < 2:
         return 1
     fp = args[1]
-    directory = os.path.splitext(fp)[0] + "\\"
+    directory = os.path.splitext(fp)[0] + os.sep
     if os.path.exists(directory):
         shutil.rmtree(directory)
     os.makedirs(directory)
