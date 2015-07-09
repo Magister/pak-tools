@@ -20,8 +20,8 @@ def main(*args):
     print "Reading files..."
     for fp in files:
         id_str = int(os.path.splitext(fp)[0])
-        with open(os.path.join(directory, fp), "rb") as fp:
-            contents = fp.read()
+        with open(os.path.join(directory, fp), "rb") as fd:
+            contents = fd.read()
         data[id_str] = contents
     print "Writing data..."
     DataPack.WriteDataPack(data, out_file, BINARY)
