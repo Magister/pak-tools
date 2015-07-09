@@ -16,11 +16,11 @@ def main():
         files = os.listdir(directory)
         data = {}
         print "Reading files..."
-        for file in files:
-            id = int(os.path.splitext(file)[0])
-            with open(os.path.join(directory, file), "rb") as file:
-                contents = file.read()
-            data[id] = contents
+        for fp in files:
+            id_str = int(os.path.splitext(fp)[0])
+            with open(os.path.join(directory, fp), "rb") as fp:
+                contents = fp.read()
+            data[id_str] = contents
         print "Writing data..."
         DataPack.WriteDataPack(data, out_file, BINARY)
         print "Finished."
