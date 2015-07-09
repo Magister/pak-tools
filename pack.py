@@ -9,21 +9,24 @@ from grit.format.data_pack import DataPack
 
 BINARY, UTF8, UTF16 = range(3)
 
-def main():
-  if len(sys.argv) > 1:
-    directory = sys.argv[1]
+def main(*args):
+    if len(args) < 2:
+        return 1
+
+    directory = args[1]
     out_file = directory+".pak"
     files = os.listdir(directory)
     data = {}
     print "Reading files..."
-    for file in files:
-        id = int(os.path.splitext(file)[0])
-        with open(os.path.join(directory, file), "rb") as file:
-          contents = file.read()
-    	data[id] = contents
+    for fp in files:
+        id_str = int(os.path.splitext(fp)[0])
+        with open(os.path.join(directory, fp), "rb") as fd:
+            contents = fd.read()
+        data[id_str] = contents
     print "Writing data..."
     DataPack.WriteDataPack(data, out_file, BINARY)
     print "Finished."
+    return 0
 
 if __name__ == '__main__':
-  main()
+    main(*sys.argv)
