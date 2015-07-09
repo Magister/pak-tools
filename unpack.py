@@ -30,9 +30,9 @@ def main(*args):
             ftype = 'html'
         elif fheader[0:1] == '\x89':
             ftype = 'png'
-        elif fheader[0:1] == '/':
+        elif fheader[0:2] == '//':
             ftype = 'js'
-        elif fheader[0:1] == '.':
+        elif fheader[0:1] == '.' or fheader[0:2] == '/*':
             ftype = 'css'
         elif fheader == 'GIF':
             ftype = 'gif'
