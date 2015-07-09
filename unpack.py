@@ -11,15 +11,15 @@ from grit.format.data_pack import DataPack
 BINARY, UTF8, UTF16 = range(3)
 
 
-def main():
-    if len(sys.argv) > 1:
-        fp = sys.argv[1]
+def main(*args):
+    if len(args) > 1:
+        fp = args[1]
         directory = os.path.splitext(fp)[0] + "\\"
         if os.path.exists(directory):
             shutil.rmtree(directory)
         os.makedirs(directory)
         print "Reading file..."
-        data = DataPack.ReadDataPack(sys.argv[1])
+        data = DataPack.ReadDataPack(fp)
         print "File encoding: " + str(data.encoding)
         print "Saving data..."
         for (resource_id, text) in data.resources.iteritems():
@@ -50,4 +50,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(*sys.argv)

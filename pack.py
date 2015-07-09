@@ -9,9 +9,9 @@ from grit.format.data_pack import DataPack
 
 BINARY, UTF8, UTF16 = range(3)
 
-def main():
-    if len(sys.argv) > 1:
-        directory = sys.argv[1]
+def main(*args):
+    if len(args) > 1:
+        directory = args[1]
         out_file = directory+".pak"
         files = os.listdir(directory)
         data = {}
@@ -26,4 +26,4 @@ def main():
         print "Finished."
 
 if __name__ == '__main__':
-    main()
+    main(*sys.argv)
