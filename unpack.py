@@ -36,6 +36,8 @@ def main(*args):
             ftype = 'css'
         elif fheader == 'GIF':
             ftype = 'gif'
+        elif fheader[0:1] == '{':
+            ftype = 'json'
         elif text.find("function(") > 0:
             ftype = 'js'
         elif text.find("body {") > 0:
